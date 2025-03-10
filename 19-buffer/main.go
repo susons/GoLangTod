@@ -60,8 +60,38 @@ func main() {
 	fmt.Println(y())
 
 	fmt.Println("***************- Hands on 4 func callbacks -*****************")
+	math := doMath(5, 2, add)
+	fmt.Println("math: ", math)
 
-	
+	fmt.Println("***************- Hands on 4 func closures -*****************")
+	fu := incrementor()
+	fmt.Println(fu())
+	fmt.Println(fu())
+	fmt.Println(fu())
+	fmt.Println(fu())
+	fmt.Println(fu())
+}
+
+func incrementor() func() int {
+	x := 0
+
+	return func() int {
+		x += 1
+		return x
+	}
+}
+
+func doMath(a int, b int, f func(int, int) int) int {
+	result := f(a, b)
+	return result
+}
+
+func add(a int, b int) int {
+	return a + b
+}
+
+func subtract(a int, b int) int {
+	return a - b
 }
 
 func foo() {
